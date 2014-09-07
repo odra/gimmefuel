@@ -30,7 +30,7 @@ angular.module('gifu', ['ionic', 'gifu.controllers'])
         templateUrl: 'templates/stations.html',
     })
     .state('station', {
-        url: '/stations/:id',
+        url: '/station',
         controller: 'StationCtrl',
         templateUrl: 'templates/station.html',
     });

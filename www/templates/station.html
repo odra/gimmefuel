@@ -2,7 +2,7 @@
     <ion-content has-header="true" padding="false">
     	<img
     		id="map"
-    		src="http://maps.googleapis.com/maps/api/staticmap?center={{station.address}}&zoom=16&size=1000x180&key=AIzaSyCIxMsYQP8758rRIremA-t8YSECfKEkmAo" />
+    		src="http://maps.googleapis.com/maps/api/staticmap?center={{station.address}}&zoom=16&size=1000x180&key=AIzaSyCIxMsYQP8758rRIremA-t8YSECfKEkmAo&markers=color:red%7C{{station.loc.lat}},{{station.loc.lng}}" />
     		<div id="map-actions" class="row">
     			<div class="col text-center">
     				<a href="">

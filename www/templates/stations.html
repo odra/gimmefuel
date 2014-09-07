@@ -1,19 +1,21 @@
 <ion-view title="Stations">
     <ion-content has-header="true" padding="false">
-	    <div class="button-bar">
+	    <!--<div class="button-bar">
 	    	<a href="" class="button button-light filter-active">Distance</a>
 	    	<a href="" class="button button-light">Price</a>
 	    	<a href="" class="button button-light">Brand</a>
-	    </div>
-
+	    </div>-->
     	<div class="list">
-    		<a class="item item-thumbnail-left" href="#/stations/{{station.id}}" ng-repeat="station in stations">
-    			<img src="{{station.logo}}">
+    		<p class="text-center" ng-show="msg">
+    			<i class="fa fa-circle-o-notch fa-spin" ng-show="!error"></i> {{msg}}
+    		</p>
+    		<a class="item" href="" ng-click="setStation(this)" ng-repeat="station in stations">
+    			<!--<img src="{{station.logo}}">-->
     			<h2>{{station.name}}</h2>
     			<p>{{station.address}}</p>
     			<p>
-    				<strong style="color:#66CC33;">{{station.currency}}{{station.prices.unleaded}}</strong>
-    				<strong style="float:right;">{{station.distance}} km</strong>
+    				<!--<strong style="color:#66CC33;">{{station.currency}}{{station.prices.unleaded}}</strong>-->
+    				<strong>{{station.distance}} km</strong>
     			</p>
     		</a>
     	</div>
