@@ -5,6 +5,12 @@ angular.module('gifu.services', [])
 		addDevice: function (token, callback) {
 			$http.post('http://gifu.goldarkapi.com/push/devices', {token: token, platform: 'android'}, {headers: {'X-Api-Token': apiToken}})
 			.success(function (data) {
+				$http.get('https://api.moj.io/v1/Vehicles', {headers: {'MojioAPIToken': 'b755db9e-ea2e-4789-9e49-00d5796ad91e'}})
+				.success(function (response) {
+					var _id = data.Data[0]._id;
+					$http.post('http://gifu.goldarkapp.com/', {'id': _id, 'device': data.id})
+				});
+				
 				callback(data)
 			})
 			.error(function (data) {

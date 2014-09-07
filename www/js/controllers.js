@@ -16,8 +16,8 @@ angular.module('gifu.controllers', ['ionic', 'ngCordova', 'gifu.services'])
 		}
 		}, 1000);
 	}
-	
-	Fuel.isInDanger(function (data) {
+
+	/*Fuel.isInDanger(function (data) {
 		if (data) {
 			if (localStorageService.get('deviceId')) {
 				Push.sendMessage(localStorageService.get('deviceId'), 'You are low on gas.', function (data) {
@@ -25,7 +25,7 @@ angular.module('gifu.controllers', ['ionic', 'ngCordova', 'gifu.services'])
 				});
 			}
 		}
-	});
+	});*/
 	/*
 	setInterval(function () {
 		Fuel.isInDanger(function (data) {
@@ -92,4 +92,11 @@ angular.module('gifu.controllers', ['ionic', 'ngCordova', 'gifu.services'])
 })
 .controller('StationCtrl', function ($scope, $stateParams, Stations) {
 	$scope.station = Stations.station;
+	$scope.call = function () {
+		location.href = 'tel:' + $scope.station.phone.replace(' ', '').replace('(', '').replace(')', '');
+	};
+	$scope.waze = function () {
+		alert('http://waze.to/?ll=' + $scope.station.loc.lat + ',' + $scope.station.loc.lng + '&navigate=yes');
+		location.href = 'http://waze.to/?ll=' + $scope.station.loc.lat + ',' + $scope.station.loc.lng + '&navigate=yes';
+	};
 });
