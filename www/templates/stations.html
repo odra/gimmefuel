@@ -1,5 +1,39 @@
 <ion-view title="Stations">
-    <ion-content has-header="true" padding="true">
-    	        
+    <ion-content has-header="true" padding="false">
+	    <div class="button-bar">
+	    	<a href="" class="button button-light filter-active">Distance</a>
+	    	<a href="" class="button button-light">Price</a>
+	    	<a href="" class="button button-light">Brand</a>
+	    </div>
+
+    	<div class="list">
+    		<a class="item item-thumbnail-left" href="#/stations/{{station.id}}" ng-repeat="station in stations">
+    			<img src="{{station.logo}}">
+    			<h2>{{station.name}}</h2>
+    			<p>{{station.address}}</p>
+    			<p>
+    				<strong style="color:#66CC33;">{{station.currency}}{{station.prices.unleaded}}</strong>
+    				<strong style="float:right;">{{station.distance}} km</strong>
+    			</p>
+    		</a>
+    	</div>
+    	<!--
+    	<div class="list">
+           <a class="item item-icon-right">
+           		<div class="row">
+           			<div class="col" >
+           				<strong>Chevron</strong>
+           				<br />        
+           			</div >
+           			<div class="col"></div>
+           			<div class="col"></div>
+           			<div class="col" style="text-align:rigth">
+           				U$ 5.00º
+           			</div>
+           		</div>
+           		<i class="icon ion-chevron-right"></i>
+           	</a>
+       </div>
+   		-->
     </ion-content>
 </ion-view>

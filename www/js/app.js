@@ -6,7 +6,7 @@
 angular.module('gifu', ['ionic', 'gifu.controllers'])
 
 .run(function($ionicPlatform) {
-  /*$ionicPlatform.ready(function() {
+  $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -15,7 +15,7 @@ angular.module('gifu', ['ionic', 'gifu.controllers'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-  });*/
+  });
 })
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   $stateProvider
@@ -29,5 +29,10 @@ angular.module('gifu', ['ionic', 'gifu.controllers'])
         controller: 'StationsCtrl',
         templateUrl: 'templates/stations.html',
     })
+    .state('station', {
+        url: '/stations/:id',
+        controller: 'StationCtrl',
+        templateUrl: 'templates/station.html',
+    });
     $urlRouterProvider.otherwise('/stations');
 });
