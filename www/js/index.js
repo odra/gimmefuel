@@ -16,6 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+var pushToken = '';
+
+function onNotification (e) {
+    if (e.event == 'registered') {
+        pushToken = e.regid;
+    } else if (e.event == 'message') {
+
+    }
+ }
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -33,6 +43,14 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+        pushNotification = window.plugins.pushNotification;
+        pushNotification.register(
+            function (data) {},
+            function (data) {},
+            {
+                "senderID":"64296955088",
+                "ecb":"onNotification"
+            });
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event

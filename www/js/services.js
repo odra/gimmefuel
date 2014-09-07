@@ -1,4 +1,44 @@
 angular.module('gifu.services', [])
+.factory('Push', function ($http) {
+	var apiToken = '/RXnNemjOGFHrzOATnXusIwYVaAw8nT4K2X4Ac3OnJ+TJxGBWH91d1WqbGvyG8VQnC+yzNotLCjPDpSYIaw+pA==';
+	return {
+		addDevice: function (token, callback) {
+			$http.post('http://gifu.goldarkapi.com/push/devices', {token: token, platform: 'android'}, {headers: {'X-Api-Token': apiToken}})
+			.success(function (data) {
+				callback(data)
+			})
+			.error(function (data) {
+				callback(data);
+			});
+		},
+		sendMessage: function (deviceId, message, callback) {
+			$http.post('http://gifu.goldarkapi.com/push/devices/' + deviceId + '/messages', {message: message}, {headers: {'X-Api-Token': apiToken}})
+			.success(function (data) {
+				callback(data)
+			})
+			.error(function (data) {
+				callback(data);
+			});
+		}
+	}
+})
+.factory('Fuel', function ($http) {
+	return {
+		isInDanger: function (callback) {
+			$http.get('https://api.moj.io/v1/Vehicles', {headers: {'MojioAPIToken': 'b755db9e-ea2e-4789-9e49-00d5796ad91e'}})
+			.success(function (data) {
+				if (data.Data[0].FuelLevel <= 15) {
+					callback(true);
+				} else {
+					callback(false);
+				}
+			})
+			.error(function (data) {
+				callback(false);
+			});
+		}
+	}
+})
 .factory('Coords', function ($http) {
 	return {
 		lat: 0,
@@ -20,7 +60,7 @@ angular.module('gifu.services', [])
 					JSON.stringify(place);
 					output.push({
 						name: place.name,
-						distance: (parseFloat(place.distance) / 1000).toFixed(3),
+						distance: (parseFloat(place.distance) / 1000).toFixed(2),
 						city: location.city,
 						loc: {
 							lat: place.location.coordinate.latitude,
